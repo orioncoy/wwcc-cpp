@@ -7,8 +7,8 @@ CXX = g++
 CXXFLAGS = -Wall -std=c++17
 
 # Target and Source
-TARGET = makefile_demo
-SRCS = assignment4-makefile_demo.cpp
+TARGET = makefileDemo
+SRCS = assignment4-makefileDemo.cpp
 
 # Build rule
 $(TARGET): $(SRCS)
