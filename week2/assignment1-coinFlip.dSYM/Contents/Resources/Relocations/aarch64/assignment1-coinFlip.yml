@@ -1,0 +1,5 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/calvin/Documents/GitHub/cs131/week2/assignment1-coinFlip'
+relocations:     []
+...
