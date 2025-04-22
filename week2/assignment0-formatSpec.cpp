@@ -3,23 +3,38 @@
 //-------------------------------+-------------+------------+
 
 #include <iostream>
+#include <cstdio>
 #include <string>
 
 using namespace std;
 
 int main() {
-    bool            var_bool{};
-    char            var_char{};
-    short int       var_short_int{};
-    int             var_int{};
-    long int        var_long_long{};
-    long long int   var_long_long_int{};
-    float           var_float{};
-    double          var_double{};
-    string          var_string{};
+    int     var_int{343};
+    float   var_float{3.14159f};
+    double  var_double{3.1415926535};
+    char    var_char{'z'};
+    string  var_string{"string!"};
 
-    cout << ""
-         << "";
-    
+    cout << "\nFromat Specifier Practice"
+         << "\n-=-=-=-=-=-=-=-=-=-=-=-=-"
+         << "\n"
+         << "\nInteger Formats:"
+         << "\nDefault: " << var_int
+         << "\nHexadecimal: " << printf("%x", var_int)
+         << "\nWidth (10): " << printf("[%10d]", var_int)
+         << "\n"
+         << "\n-=-=-=-=-=-=-=-=-=-=-=-=-"
+         << "\n"
+         << "\nFloat Formats:"
+         << "\nDefault: " << var_float
+         << "\nScientific Notation: " << printf("%e", var_float)
+         << "\nPrecision (3): " << printf("%.2f", var_float)
+         << "\n"
+         << "\n-=-=-=-=-=-=-=-=-=-=-=-=-"
+         << "\n"
+         << "\nCharacter and String Formats:"
+         << "\nDefault String: " << var_string
+         << "\nDefault Character: " << var_char;
+
     return 0;
 }

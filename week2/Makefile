@@ -10,7 +10,7 @@ CXXFLAGS = -Wall -std=c++17
 # Target and Source
 TARGET = test
 # HERE!!!!!!! V V V V V V
-SRCS = num_pat.cpp
+SRCS = assignment0-formatSpec.cpp
 
 # Build rule
 $(TARGET): $(SRCS)
