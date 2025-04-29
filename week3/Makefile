@@ -10,7 +10,7 @@ CXXFLAGS = -Wall -std=c++17
 # Target and Source
 TARGET = test
 # HERE!!!!!!! V V V V V V
-SRCS = assignment0-distCalc.cpp
+SRCS = assignment2-temperature_converter.cpp
 
 # Build rule
 $(TARGET): $(SRCS)
