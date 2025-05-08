@@ -10,7 +10,7 @@ CXXFLAGS = -Wall -std=c++17
 # Target and Source
 TARGET = test
 # HERE!!!!!!! V V V V V V
-SRCS = assignment1-sales_analysis.cpp
+SRCS = assignment2-message_analyzer.cpp
 
 # Build rule
 $(TARGET): $(SRCS)
