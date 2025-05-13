@@ -56,10 +56,6 @@ void interface(vector<s_task> &tasks, int &step, string target) {
     }
 };
 
-void interface(std::vector<s_task> &tasks, int &step) {
-    interface(tasks, step, "");
-}
-
 // clears the terminal based on the OS, should work for most cases
 void terminal_clear() {
     #ifdef WINDOWS
@@ -115,10 +111,11 @@ void init(vector<s_task> &tasks, int &step) {
 
 int main() {
     vector<s_task> tasks;
-    int step{0};
+    int step = 0;
 
     cout << "\nWelcome to the task manager!";
     while (true) {
-        interface(tasks, step);
+        step = 0;
+        interface(tasks, step, "");
     }
 }

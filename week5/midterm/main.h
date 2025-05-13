@@ -22,7 +22,6 @@ struct s_task {
 
 // interface related functions
 void interface(std::vector<s_task> &tasks, int &step, std::string target);
-void interface(std::vector<s_task> &tasks, int &step);
 void help(std::vector<s_task> &vec, int &step);
 void init(std::vector<s_task> &tasks, int &step);
 void terminal_clear();
@@ -32,6 +31,7 @@ void inp_scrub(std::string &inp_temp, int &tsk_out);
 void inp_scrub(std::string &inp_temp, int &tsk_out, int min, int max);
 void inp_scrub(std::string &inp_temp, bool &tsk_out);
 void inp_parser(std::vector<s_task> &vec, int &step, std::string usr_inp);
+void s_token(std::vector<std::string> &p_vec, std::string usr_inp);
 
 //
 int  locate_element(std::vector<s_task> &vec, std::string target);
