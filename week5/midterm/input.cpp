@@ -14,11 +14,10 @@ void inp_scrub(string &inp_temp, int &tsk_out) {
     try {
         tsk_out = stoi(inp_temp);
         inp_temp = {};
-    }
-    catch(const exception& e) {
+    } catch(const exception& e) {
         cerr << e.what() << '\n';
     }
-};
+}
 
 // input scrubbing for int inputs with a specified range
 void inp_scrub(string &inp_temp, int &tsk_out, int min, int max) {
@@ -31,7 +30,7 @@ void inp_scrub(string &inp_temp, int &tsk_out, int min, int max) {
         getline(cin, inp_temp);
         inp_scrub(inp_temp, tsk_out);
     }
-};
+}
 
 // input scrubbing for bool inputs
 void inp_scrub(string &inp_temp, bool &tsk_out) {
@@ -45,7 +44,7 @@ void inp_scrub(string &inp_temp, bool &tsk_out) {
         // error message
         inp_temp = {};
     }
-};
+}
 
 void target_scrub(vector<string> &p_vec, string &usr_inp, string target) {
     if (target.empty()) {
@@ -64,7 +63,7 @@ void s_token(vector<string> &p_vec, string usr_inp) {
 }
 
 // parses the user input by tokenizing the vector
-void inp_parser(vector<s_task> &vec, int &step, string usr_inp) {
+void inp_parser(vector<s_task> &vec, int &step, string usr_inp, string &target) {
     vector<string> parsed_vec;
 
     s_token(parsed_vec, usr_inp);
@@ -76,22 +75,38 @@ void inp_parser(vector<s_task> &vec, int &step, string usr_inp) {
     }
 
     string cmd = parsed_vec.at(0);
-    string target = (parsed_vec.size() > 1) ? parsed_vec.at(1) : "";
 
-    while (parsed_vec.size() < 2) {
-            cout << "You must include a name with your task, -a [task name here]. "
+    if (parsed_vec.size() == 2) {
+        target = parsed_vec.at(1);
+    } else if (parsed_vec.size() < 2 && cmd != "-h") {
+        while (parsed_vec.size() < 2) {
+            cout << "You must include an argument with your command, " << cmd << " [argument]. "
                     "Try again\n> ";
+            parsed_vec = {};
             getline(cin, usr_inp);
             s_token(parsed_vec, usr_inp);
+
+        }
+        target = parsed_vec.at(1);
+    } else if (cmd == "-h") {
+    } else {
+        while (parsed_vec.size() > 2) {
+            cout << "Only include one argument with your command, " << cmd << " [argument]. "
+                    "Try again\n> ";
+            parsed_vec = {};
+            getline(cin, usr_inp);
+            s_token(parsed_vec, usr_inp);
+        }
+        target = parsed_vec.at(1);
     }
 
     if (cmd == "-a") {
         target_scrub(parsed_vec, usr_inp, target);
         step = 1;
-    } else if (cmd == "-r") {
+    } else if (cmd == "-q") {
         target_scrub(parsed_vec, usr_inp, target);
         step = 2;
-    } else if (cmd == "-u") {
+    } else if (cmd == "-c") {
         target_scrub(parsed_vec, usr_inp, target);
         step = 3;
     } else if (cmd == "-v") {
@@ -100,18 +115,10 @@ void inp_parser(vector<s_task> &vec, int &step, string usr_inp) {
     } else if (cmd == "-s") {
         target_scrub(parsed_vec, usr_inp, target);
         step = 5;
-    } else if (cmd == "-pr") {
-        target_scrub(parsed_vec, usr_inp, target);
+    }else if (cmd == "-h") {
         step = 6;
-    } else if (cmd == "-h") {
-        step = 7;
     } else {
-        cout << "Sorry, "  << cmd << " is not a recognized command";
-    }
-
-    if (step == 7) {
-        interface(vec, step, "");
-    } else {
-        interface(vec, step, target);
+        terminal_clear();
+        cout << "Sorry, '"  << cmd << "' is not a recognized command\n";
     }
 }
