@@ -7,6 +7,8 @@
 
 using namespace std;
 
+
+// main prompt for adding a task
 void add_task(vector<s_task> &vec, int &step, string name) {
     s_task tsk_temp{};
     string inp_temp{};
@@ -41,6 +43,7 @@ void add_task(vector<s_task> &vec, int &step, string name) {
     step = 0;
 };
 
+// marks a target task as complete
 void complete_task(vector<s_task> &vec, int &step, string target) {
     terminal_clear();
     for (int i = 0; i < vec.size(); i++) {
@@ -53,6 +56,7 @@ void complete_task(vector<s_task> &vec, int &step, string target) {
     step = 0;
 }
 
+// prints a given task
 void print_task(vector<s_task> &vec, int index, string stat) {
     cout << "\nTask: " << vec.at(index).name
                  << "\n - Description: " << vec.at(index).desc
@@ -64,6 +68,7 @@ void print_task(vector<s_task> &vec, int index, string stat) {
                  << "\n - Status: " << stat;
 }
 
+// used for viewing tasks, handles multiple sub commands for filtering
 void view_task(vector<s_task> &vec, int &step, string target) {
     int target_index{};
     string stat{};
@@ -138,6 +143,7 @@ void sort_task(vector<s_task> &vec, int &step, string target) {
     step = 0;
 };
 
+// prints the productivity report, lives in the main menu
 void prod_rpt(vector<s_task> &vec, int &step) {
     int completed_tasks{};
     int active_tasks{};

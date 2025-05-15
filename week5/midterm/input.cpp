@@ -46,6 +46,7 @@ void inp_scrub(string &inp_temp, bool &tsk_out) {
     }
 }
 
+// checks if the target in a command is there and prompts user if it is empty
 void target_scrub(vector<string> &p_vec, string &usr_inp, string target) {
     if (target.empty()) {
         cout << "You must provide an argument with this command, try again\n>";
@@ -54,6 +55,8 @@ void target_scrub(vector<string> &p_vec, string &usr_inp, string target) {
     }
 }
 
+// takes in a string and a vector by reference, tokenizes the string and assigns each token to
+// an element in the vector iteratively
 void s_token(vector<string> &p_vec, string usr_inp) {
     stringstream s(usr_inp);
     string word{};
@@ -77,8 +80,10 @@ void inp_parser(vector<s_task> &vec, int &step, string usr_inp, string &target) 
     string cmd = parsed_vec.at(0);
 
     if (parsed_vec.size() == 2) {
+        // assigns command argument to target
         target = parsed_vec.at(1);
     } else if (parsed_vec.size() < 2 && cmd != "-h") {
+        // if the command lacks an argument, prompts user to enter one
         while (parsed_vec.size() < 2) {
             cout << "You must include an argument with your command, " << cmd << " [argument]. "
                     "Try again\n> ";
@@ -89,7 +94,10 @@ void inp_parser(vector<s_task> &vec, int &step, string usr_inp, string &target) 
         }
         target = parsed_vec.at(1);
     } else if (cmd == "-h") {
+        // bypasses this if block if the command is 'help' as it does not need an argument
     } else {
+        // if more than one argument is present, prompts user to 
+        // re-enter command with only one argument
         while (parsed_vec.size() > 2) {
             cout << "Only include one argument with your command, " << cmd << " [argument]. "
                     "Try again\n> ";

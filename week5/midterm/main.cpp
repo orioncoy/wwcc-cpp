@@ -13,12 +13,11 @@
 // [X] Generate productivity reports
 //
 
-#include <cstdlib>
-
 #include "main.h"
 
 using namespace std;
 
+// The 'train station' that routes the user depending on what step is
 void interface(vector<s_task> &tasks, int &step, string &target) {
     switch (step) {
     case 0: // init
@@ -47,15 +46,12 @@ void interface(vector<s_task> &tasks, int &step, string &target) {
     }
 };
 
-// clears the terminal based on the OS, should work for most cases
+// clears the terminal, should work for Linux, MacOS, and Win
 void terminal_clear() {
-    #ifdef WINDOWS
-        system("cls");
-    #else
-        system("clear");
-    #endif
+    cout << "\033[2J\033[1;1H";
 };
 
+// simple help interface
 void help(int &step) {
     terminal_clear();
     cout << "\n               [ HELP ]"
@@ -109,6 +105,7 @@ bool locate_element(vector<s_task> &vec, int target_index) {
     return found;
 }
 
+// Main menu that takes users input and passes it into inp parser
 void init(vector<s_task> &tasks, int &step, string &target) {
     string inp{};
     prod_rpt(tasks, step);
