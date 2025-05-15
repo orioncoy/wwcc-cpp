@@ -13,9 +13,6 @@ TARGET = task_manager
 build: main.cpp input.cpp commands.cpp
 	$(CXX) $(CXXFLAGS) -o $(TARGET) main.cpp input.cpp commands.cpp
 
-$(TARGET): main.o input.o commands.o
-	$(CXX) $(CXXFLAGS) -o $(TARGET) main.o input.o commands.o
-
 main.o: main.cpp main.h
 	g++ -c main.cpp
 

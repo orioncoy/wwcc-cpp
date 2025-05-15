@@ -74,6 +74,7 @@ void print_task(vector<s_task> &vec, int &step, string target) {
             }
             cout << "\nTask: " << vec.at(i).name
                  << "\n - Description: " << vec.at(i).desc
+                 << "\n - Priority: " << vec.at(i).priority
                  << "\n - Due Date: "
                     << to_string(vec.at(i).due_date.day) << "-"
                     << to_string(vec.at(i).due_date.month) << "-"
@@ -87,6 +88,7 @@ void print_task(vector<s_task> &vec, int &step, string target) {
                 stat = "Complete";
                 cout << "\nTask: " << vec.at(i).name
                      << "\n - Description: " << vec.at(i).desc
+                     << "\n - Priority: " << vec.at(i).priority
                      << "\n - Due Date: "
                         << to_string(vec.at(i).due_date.day) << "-"
                         << to_string(vec.at(i).due_date.month) << "-"
@@ -101,6 +103,7 @@ void print_task(vector<s_task> &vec, int &step, string target) {
                 stat = "Incomplete";
                 cout << "\nTask: " << vec.at(i).name
                      << "\n - Description: " << vec.at(i).desc
+                     << "\n - Priority: " << vec.at(i).priority
                      << "\n - Due Date: "
                         << to_string(vec.at(i).due_date.day) << "-"
                         << to_string(vec.at(i).due_date.month) << "-"
@@ -121,6 +124,7 @@ void print_task(vector<s_task> &vec, int &step, string target) {
         }
         cout << "\nTask: " << vec.at(target_index).name
              << "\n  Description: " << vec.at(target_index).desc
+             << "\n - Priority: " << vec.at(target_index).priority
              << "\n  Due Date (DD-MM-YYYY): "
                 << to_string(vec.at(target_index).due_date.day) << "-"
                 << to_string(vec.at(target_index).due_date.month) << "-"
@@ -148,15 +152,18 @@ void sort_task(vector<s_task> &vec, int &step, string target) {
 
         // overwrites original vector with sorted vector, starting with complete
         for (int i = 0; i < cmp.size(); i++) {
-            vec[i] = cmp.at(i);
+            vec.at(i) = cmp.at(i);
         }
 
         // moves on to incomplete vectors, starting at the index where complete left off
         for (int i = cmp.size() - 1; i < incmp.size(); i++) {
-            vec[i + cmp.size()] = incmp.at(i);
+            vec.at(i + cmp.size()) = incmp.at(i);
         }
 
-    } else if (target == "-duedate") {
+    } else if (target == "-priority") {
+        sort(vec.begin(), vec.end(), [](const s_task& a, const s_task& b) {
+            return a.priority < b.priority;
+        });
         
     } else {
 

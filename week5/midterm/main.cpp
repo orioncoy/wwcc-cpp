@@ -9,7 +9,7 @@
 // [X] Add tasks with title, description, priority and due date
 // [X] Mark tasks as complete/incomplete
 // [X] Display tasks sorted by priority or due date
-// [ ] Filter tasks by status
+// [X] Filter tasks by status
 // [X] Generate productivity reports
 //
 
@@ -73,7 +73,7 @@ void help(int &step) {
          << "\n|       |          | -v  -incomplete    |"
          << "\n+-------+----------+--------------------+"
          << "\n|  -s   | sort     | -s  -status        |"
-         << "\n|       |          | -s  -duedate       |"
+         << "\n|       |          | -s  -priority      |"
          << "\n+-------+----------+--------------------+"
          << "\n|  -q   | quit     | -q                 |"
          << "\n+-------+----------+--------------------+";
