@@ -2,6 +2,12 @@
 
 ## Building
 
+### Set up
+
+For the proper building of this project, you must do the following.
+- Install Make
+- Install a C++ compiler (I use g++, for this project)
+
 ### Setting up the Makefile
 
 Make sure to:

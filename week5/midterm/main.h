@@ -39,8 +39,9 @@ bool locate_element(std::vector<s_task> &vec, int target_index);
 // command functions
 void add_task(std::vector<s_task> &vec, int &step, std::string name);
 void complete_task(std::vector<s_task> &vec, int &step, std::string target);
-void print_task(std::vector<s_task> &vec, int &step, std::string target);
+void view_task(std::vector<s_task> &vec, int &step, std::string target);
 void sort_task(std::vector<s_task> &vec, int &step, std::string target);
+void print_task(std::vector<s_task> &vec, int index, std::string stat);
 void prod_rpt(std::vector<s_task> &vec, int &step);
 
 #endif //MAIN_H

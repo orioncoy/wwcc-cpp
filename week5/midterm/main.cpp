@@ -33,7 +33,7 @@ void interface(vector<s_task> &tasks, int &step, string &target) {
         complete_task(tasks, step, target);
         break;
     case 4: // view tasks
-        print_task(tasks, step, target);
+        view_task(tasks, step, target);
         break;
     case 5: // sort tasks
         sort_task(tasks, step, target);

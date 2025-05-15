@@ -53,12 +53,20 @@ void complete_task(vector<s_task> &vec, int &step, string target) {
     step = 0;
 }
 
-void print_task(vector<s_task> &vec, int &step, string target) {
+void print_task(vector<s_task> &vec, int index, string stat) {
+    cout << "\nTask: " << vec.at(index).name
+                 << "\n - Description: " << vec.at(index).desc
+                 << "\n - Priority: " << vec.at(index).priority
+                 << "\n - Due Date: "
+                    << to_string(vec.at(index).due_date.day) << "-"
+                    << to_string(vec.at(index).due_date.month) << "-"
+                    << to_string(vec.at(index).due_date.year)
+                 << "\n - Status: " << stat;
+}
+
+void view_task(vector<s_task> &vec, int &step, string target) {
     int target_index{};
-    string name{};
-    string desc{};
     string stat{};
-    string date{};
     bool found{false};
 
     if (target == "-recent") {
@@ -72,28 +80,14 @@ void print_task(vector<s_task> &vec, int &step, string target) {
             } else {
                 stat = "Incomplete";
             }
-            cout << "\nTask: " << vec.at(i).name
-                 << "\n - Description: " << vec.at(i).desc
-                 << "\n - Priority: " << vec.at(i).priority
-                 << "\n - Due Date: "
-                    << to_string(vec.at(i).due_date.day) << "-"
-                    << to_string(vec.at(i).due_date.month) << "-"
-                    << to_string(vec.at(i).due_date.year)
-                 << "\n - Status: " << stat;
+            print_task(vec, i, stat);
         }
     } else if (target == "-complete") {
         terminal_clear();
         for (int i = 0; i < vec.size(); i++) {
             if (vec.at(i).complete) {
                 stat = "Complete";
-                cout << "\nTask: " << vec.at(i).name
-                     << "\n - Description: " << vec.at(i).desc
-                     << "\n - Priority: " << vec.at(i).priority
-                     << "\n - Due Date: "
-                        << to_string(vec.at(i).due_date.day) << "-"
-                        << to_string(vec.at(i).due_date.month) << "-"
-                        << to_string(vec.at(i).due_date.year)
-                     << "\n - Status: " << stat;
+                print_task(vec, i, stat);
             }
         }
     } else if (target == "-incomplete") {
@@ -101,14 +95,7 @@ void print_task(vector<s_task> &vec, int &step, string target) {
         for (int i = 0; i < vec.size(); i++) {
             if (!vec.at(i).complete) {
                 stat = "Incomplete";
-                cout << "\nTask: " << vec.at(i).name
-                     << "\n - Description: " << vec.at(i).desc
-                     << "\n - Priority: " << vec.at(i).priority
-                     << "\n - Due Date: "
-                        << to_string(vec.at(i).due_date.day) << "-"
-                        << to_string(vec.at(i).due_date.month) << "-"
-                        << to_string(vec.at(i).due_date.year)
-                     << "\n - Status: " << stat;
+                print_task(vec, i, stat);
             }
         }
     } else {
@@ -122,14 +109,7 @@ void print_task(vector<s_task> &vec, int &step, string target) {
         } else {
             stat = "Incomplete";
         }
-        cout << "\nTask: " << vec.at(target_index).name
-             << "\n  Description: " << vec.at(target_index).desc
-             << "\n - Priority: " << vec.at(target_index).priority
-             << "\n  Due Date (DD-MM-YYYY): "
-                << to_string(vec.at(target_index).due_date.day) << "-"
-                << to_string(vec.at(target_index).due_date.month) << "-"
-                << to_string(vec.at(target_index).due_date.year)
-             << "\n  Status: " << stat;
+        print_task(vec, target_index, stat);
     }
 
     step = 0;
