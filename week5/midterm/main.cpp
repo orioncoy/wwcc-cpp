@@ -8,7 +8,7 @@
 // To-Do List
 // [X] Add tasks with title, description, priority and due date
 // [X] Mark tasks as complete/incomplete
-// [X] Display tasks sorted by priority or due date
+// [X] Display tasks sorted by priority or completion
 // [X] Filter tasks by status
 // [X] Generate productivity reports
 //

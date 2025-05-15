@@ -135,38 +135,25 @@ void print_task(vector<s_task> &vec, int &step, string target) {
     step = 0;
 };
 
+// using std::sort to sort the tasks by priority and status
+// lambda function to compare the given priorities in two given tasks and for space saving
 void sort_task(vector<s_task> &vec, int &step, string target) {
     if (target == "-status") {
-        vector<s_task> incmp;
-        vector<s_task> cmp;
-
-        for (int i = 0; i < vec.size(); i++) {
-            if (vec.at(i).complete) {
-                cmp.push_back(vec.at(i));
-            } else if (!vec.at(i).complete) {
-                incmp.push_back(vec.at(i));
-            } else {
-                // feel the need for something here
+        sort(vec.begin(), vec.end(), 
+            [] (const s_task& a, const s_task& b) {
+                return a.complete > b.complete;
             }
-        }
-
-        // overwrites original vector with sorted vector, starting with complete
-        for (int i = 0; i < cmp.size(); i++) {
-            vec.at(i) = cmp.at(i);
-        }
-
-        // moves on to incomplete vectors, starting at the index where complete left off
-        for (int i = cmp.size() - 1; i < incmp.size(); i++) {
-            vec.at(i + cmp.size()) = incmp.at(i);
-        }
+        );
 
     } else if (target == "-priority") {
-        sort(vec.begin(), vec.end(), [](const s_task& a, const s_task& b) {
-            return a.priority < b.priority;
-        });
+        sort(vec.begin(), vec.end(), 
+            [] (const s_task& a, const s_task& b) {
+                return a.priority > b.priority;
+            }
+        );
         
     } else {
-
+        cout << "Sorry, '" << target << "' is not a recognized argument, please try again." ;
     }
     step = 0;
 };
