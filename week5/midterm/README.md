@@ -18,3 +18,15 @@ CXXFLAGS = -Wall -std=c++17
 ```
 
 ### Building
+1. Navigate to `../wwcc_cpp/week5/midterm/` in your terminal.
+2. Enter command `make`.
+3. The output `task_manager` should show up in the `../midterm/` directory.
+4. If it does not build, double check you have the compiler installed with the correct flags and try again.
+
+## Outline and Useage
+
+TODO
+
+## Documentation
+
+TODO
