@@ -13,6 +13,10 @@ TARGET = task_manager
 build: main.cpp input.cpp commands.cpp
 	$(CXX) $(CXXFLAGS) -o $(TARGET) main.cpp input.cpp commands.cpp
 
+# Rule for windows, just includes static
+win: main.cpp input.cpp commands.cpp
+	$(CXX) $(CXXFLAGS) -static -o $(TARGET) main.cpp input.cpp commands.cpp
+
 main.o: main.cpp main.h
 	g++ -c main.cpp
 

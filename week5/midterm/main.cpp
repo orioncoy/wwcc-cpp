@@ -15,6 +15,11 @@
 
 #include "main.h"
 
+// only needed for windows compilation
+#ifdef _WIN32 || _WIN64
+#include <cstdlib>
+#endif
+
 using namespace std;
 
 // The 'train station' that routes the user depending on what step is
@@ -46,9 +51,13 @@ void interface(vector<s_task> &tasks, int &step, string &target) {
     }
 };
 
-// clears the terminal, should work for Linux, MacOS, and Win
+// clears the terminal based on OS
 void terminal_clear() {
-    cout << "\033[2J\033[1;1H";
+    #ifdef _WIN32 || _WIN64
+        system("cls");
+    #elif __APPLE__ || __linux__
+        system("clear");
+    #endif
 };
 
 // simple help interface
@@ -89,7 +98,7 @@ bool locate_element(vector<s_task> &vec, string target, int &target_index) {
     }
     if (!found) {
         terminal_clear();
-        cout << target << " is not a valid argument! Please try again.";
+        cout << "\033[1;31m" << target << " is not a valid argument! Please try again.\033[0m\n\n";
     }
     return found;
 }
@@ -100,7 +109,7 @@ bool locate_element(vector<s_task> &vec, int target_index) {
     if (!vec.empty()) {
         found = true;
     } else {
-        cout << "\nThere are no tasks available, please add one and try again.";
+        cout << "\033[1;31mThere are no tasks available, please add one and try again.\033[0m\n\n";
     }
     return found;
 }
@@ -109,7 +118,12 @@ bool locate_element(vector<s_task> &vec, int target_index) {
 void init(vector<s_task> &tasks, int &step, string &target) {
     string inp{};
     prod_rpt(tasks, step);
-    cout << "\nPlease enter a command or type '-h' for help\n> ";
+    cout << "\nPopular Commands!\n"
+         << "\n-a [task name here] | Adds a new task"
+         << "\n-c [task name here] | Mark a task as complete"
+         << "\n-v -[argument here] | View your tasks"
+         << "\n-s -[argument here] | Sort your tasks\n"
+         << "\nPlease enter a command or type '-h' for help\n> ";
     getline(cin, inp);
     inp_parser(tasks, step, inp, target);
 }
@@ -119,7 +133,7 @@ int main() {
     vector<s_task> tasks;
     int step = 0;
     string target = "";
-    cout << "Welcome to the task manager!";
+    cout << "\033[1;32mWelcome to the task manager!\033[0m\n\n";
     while (true) {
         interface(tasks, step, target);
     }

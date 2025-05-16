@@ -5,8 +5,12 @@
 
 #include "main.h"
 
-using namespace std;
+// only needed for windows compilation
+#ifdef _WIN32 || _WIN64
+#include <algorithm> 
+#endif
 
+using namespace std;
 
 // main prompt for adding a task
 void add_task(vector<s_task> &vec, int &step, string name) {
@@ -35,9 +39,9 @@ void add_task(vector<s_task> &vec, int &step, string name) {
 
     terminal_clear();
 
-    cout << "Task successfully created!"
+    cout << "\033[1;32mTask: " << name << " successfully created!"
             "\nBy default, all tasks are marked as 'incomplete' on creation. "
-            "\nYou can complete tasks with the '-c [task name]' command.\n";
+            "\nYou can complete tasks with the '-c [task name]' command.\033[0m\n\n";
 
     vec.push_back(tsk_temp);
     step = 0;
@@ -46,11 +50,19 @@ void add_task(vector<s_task> &vec, int &step, string name) {
 // marks a target task as complete
 void complete_task(vector<s_task> &vec, int &step, string target) {
     terminal_clear();
-    for (int i = 0; i < vec.size(); i++) {
-        if (vec.at(i).name == target) {
-            vec.at(i).complete = true;
-            cout << "Task: " << vec.at(i).name << " is marked as complete!";
-            break;
+
+    if (vec.empty()) {
+        cout << "\033[1;31mYou have not added any tasks yet!\033[0m\n\n";
+    } else {
+        for (int i = 0; i < vec.size(); i++) {
+            if (vec.at(i).name == target) {
+                vec.at(i).complete = true;
+                cout << "\033[1;32mTask: " << vec.at(i).name << " is marked as complete!\033[0m\n\n";
+                break;
+            } else {
+                cout << "\033[1;31mTask: " << target << " was not found.\033[0m\n\n";
+                break;
+            }
         }
     }
     step = 0;
@@ -58,14 +70,14 @@ void complete_task(vector<s_task> &vec, int &step, string target) {
 
 // prints a given task
 void print_task(vector<s_task> &vec, int index, string stat) {
-    cout << "\nTask: " << vec.at(index).name
+    cout << "Task: " << vec.at(index).name
                  << "\n - Description: " << vec.at(index).desc
                  << "\n - Priority: " << vec.at(index).priority
                  << "\n - Due Date: "
                     << to_string(vec.at(index).due_date.day) << "-"
                     << to_string(vec.at(index).due_date.month) << "-"
                     << to_string(vec.at(index).due_date.year)
-                 << "\n - Status: " << stat;
+                 << "\n - Status: " << stat << "\n\n";
 }
 
 // used for viewing tasks, handles multiple sub commands for filtering
@@ -138,7 +150,8 @@ void sort_task(vector<s_task> &vec, int &step, string target) {
         );
         
     } else {
-        cout << "Sorry, '" << target << "' is not a recognized argument, please try again." ;
+        terminal_clear();
+        cout << "Sorry, '" << target << "' is not a recognized argument, please try again.\n\n";
     }
     step = 0;
 };
@@ -148,7 +161,7 @@ void prod_rpt(vector<s_task> &vec, int &step) {
     int completed_tasks{};
     int active_tasks{};
 
-    cout << "\n\nProductivity Report"
+    cout << "Productivity Report"
          << "\n~~~~~~~~~~~~~~~~~~~"
          << "\nTotal tasks: " << vec.size();
 
@@ -166,5 +179,6 @@ void prod_rpt(vector<s_task> &vec, int &step) {
     }
 
     cout << "\n~~~~~~~~~~~~~~~~~~~\n";
+
     step = 0;
 };
