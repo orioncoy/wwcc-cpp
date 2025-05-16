@@ -81,7 +81,7 @@ void inp_parser(vector<s_task> &vec, int &step, string usr_inp, string &target) 
     string cmd = parsed_vec.at(0);
 
     // bypass for no argument commands
-    if (cmd == "-h" || cmd == "-q" || cmd != "-a" || cmd != "-c" || cmd != "-v" || cmd != "-s") {} 
+    if (cmd == "-h" || cmd == "-q" || cmd != "-a" && cmd != "-c" && cmd != "-v" && cmd != "-s") {} 
     else if (parsed_vec.size() == 2) {
         // assigns command argument to target
         target = parsed_vec.at(1);
