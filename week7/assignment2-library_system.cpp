@@ -75,11 +75,13 @@ class c_library {
 private:
     string name;
     string address;
-    vector<c_book> catalog;
+
 
 public:
     c_library(string name, string address)
         : name(name), address(address) {}
+
+    vector<c_book> catalog;
 
     string get_name() const{
         return name;
@@ -115,6 +117,52 @@ void c_library::print_catalog() const {
 
 #pragma endregion lc
 
+// - AUTHOR SEARCH - // ------------------------------------- //
+#pragma region as
+
+void author_search(const c_library &lib) {
+    bool loop = true;
+    bool loop2 = true;
+
+    while (loop) {
+        string inp;
+        loop2 = true;
+        bool found = false;
+        cout << "\nEnter the name of the author you would like to search for\n> ";
+        getline(cin, inp);
+
+        cout << "\nBook(s) by " << inp;
+        for (int i = 0; i < lib.catalog.size(); i++) {
+            string auth = lib.catalog.at(i).get_author().get_name();
+            if (inp == auth) {
+                cout << "\n - \"" << lib.catalog.at(i).get_title() << "\"" << " (" << lib.catalog.at(i).get_publication_year() << ")";
+                found = true;
+            }
+        }
+
+        if (!found) {
+            cout << "\nSorry there were no books by the author " << inp;
+        }
+
+        while (loop2) {
+            string inp2;
+            cout << "\nWould you like to search for another author?\n(y/n) > ";
+            getline(cin, inp2);
+            if (inp2 == "y") {
+                loop2 = false;
+                loop = true;
+            } else if (inp2 == "n") {
+                loop2 = false;
+                loop = false;
+            } else {
+                cout << "Sorry the input '" << inp << "' was not recognized, please try again.\n";
+            }
+        }
+    }
+}
+
+#pragma endregion as
+
 // - MAIN - // ------------------------------------- //
 
 int main() {
@@ -137,9 +185,9 @@ int main() {
 
     lib.print_catalog();
 
-    cout << "\n-=-=-=-=-=-=-=-=-=-=-=-=-";
+    cout << "\n-=-=-=-=-=-=-=-=-=-=-=-=-" << endl;
 
-    
+    author_search(lib);
 
     return 0;
 }

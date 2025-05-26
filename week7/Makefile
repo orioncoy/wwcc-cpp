@@ -10,7 +10,7 @@ CXXFLAGS = -Wall -std=c++17
 # Target and Source
 TARGET = test
 # HERE!!!!!!! V V V V V V
-SRCS = assignment1-shape_calculator.cpp
+SRCS = assignment2-library_system.cpp
 
 # Build rule
 $(TARGET): $(SRCS)
