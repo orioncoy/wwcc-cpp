@@ -5,13 +5,19 @@
 #include <string>
 #include <vector>
 
-struct s_date {
+/*
+    Great job separating things into a .h file
+*/
+
+struct s_date
+{
     int day;
     int month;
     int year;
 };
 
-struct s_task {
+struct s_task
+{
     std::string name;
     std::string desc;
     int priority;
@@ -44,4 +50,4 @@ void sort_task(std::vector<s_task> &vec, int &step, std::string target);
 void print_task(std::vector<s_task> &vec, int index, std::string stat);
 void prod_rpt(std::vector<s_task> &vec, int &step);
 
-#endif //MAIN_H
+#endif // MAIN_H
