@@ -4,6 +4,9 @@
 
 #include <iostream>
 
+#include "Inventory.h"
+#include "Product.h"
+
 int main() {
     
 }

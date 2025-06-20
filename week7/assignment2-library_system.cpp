@@ -9,7 +9,6 @@
 using namespace std;
 
 // - AUTHOR CLASS - // ------------------------------------- //
-#pragma region ac
 
 class c_author {
 private:
@@ -29,10 +28,7 @@ public:
     }
 };
 
-#pragma endregion ac
-
 // - BOOK CLASS - // ------------------------------------- //
-#pragma region bc
 
 class c_book {
 private:
@@ -66,10 +62,7 @@ public:
     }
 };
 
-#pragma endregion bc
-
 // - LIBRARY CLASS - // ------------------------------------- //
-#pragma region lc
 
 class c_library {
 private:
@@ -115,10 +108,7 @@ void c_library::print_catalog() const {
     }
 }
 
-#pragma endregion lc
-
 // - AUTHOR SEARCH - // ------------------------------------- //
-#pragma region as
 
 void author_search(const c_library &lib) {
     bool loop = true;
@@ -160,8 +150,6 @@ void author_search(const c_library &lib) {
         }
     }
 }
-
-#pragma endregion as
 
 // - MAIN - // ------------------------------------- //
 
