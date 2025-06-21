@@ -21,14 +21,14 @@ public:
     : type(type), name(name) {
         switch (type) {
         case enemy_type::UNDEAD:
-            this->health = 5;
+            this->health = 3;
             break;
         case enemy_type::SKELETON:
-            this->health = 5;
+            this->health = 1;
             break;
         case enemy_type::BOSS:
-            this->health = 5;
-            this->attack = 2;
+            this->health = 6;
+            this->attack = 3;
             break;
         default:
             break;
@@ -50,6 +50,10 @@ public:
 
     void take_damage(int damage) {
         this->health -= damage;
+    }
+
+    void set_attack_modifier(int attack) {
+        this->attack += attack;
     }
 
     bool is_alive() {

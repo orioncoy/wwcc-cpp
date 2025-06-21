@@ -15,7 +15,7 @@ class c_player {
 private:
     std::string name;
     int health = 5;
-    int luck = 5;
+    int luck = 1;
     weapon equipped = {};
     areas current_location = areas::BURNT_VILLAGE;
 

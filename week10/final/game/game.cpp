@@ -326,22 +326,35 @@ void play_hall_of_ewyl(bool &gameloop, c_player &player, game_state &state, std:
          << "\nIt keeps accelerating and in a moment it stops in front of a large pair of iron reinforced doors"
          << "\n\n\"Enter!\" the doors slowly creek open to a dark throne room"
          << "\n\nA person sits at the throne, they raise their hand and command in that familiar booming voice";
-// something something i like a fair fight
+
+    cout << "\nThe person throws you a sword and the voice booms"
+         << "\n\"I prefer my fights to be fair, accept\""
+         << "\n\nDo you accept?\n(y/n) > ";
+
+    binput = selection_scrub();
+    if (binput) {
+        player.equip_weapon([&]{
+            ewyl.set_attack_modifier(-1);
+            weapon ewyls_sword = {"Ewyls Sword", 6};
+            return ewyls_sword;
+        }());
+    }
 
     do {
         srand(time(0));
         player_stats(player);
         enemy_stats(ewyl);
-        cout << "\nIt is Ewyl's turn";
+        cout << "\n\nIt is Ewyl's turn";
         chance = 1 + rand() % ewyl.get_attack();
-        cout << "\nEwyl attacks you for " << chance
-             << "\n\nIt is your turn"
-             << "\nAttack? (y/n) > ";
+        cout << "\nEwyl attacks you for " << chance;
         player.take_damage(chance);
-        if (!player.is_alive()) {state = game_state::GAME_OVER;}
+        if (!player.is_alive()) {state = game_state::GAME_OVER;} else {
+            cout << "\n\nIt is your turn"
+                 << "\nAttack? (y/n) > ";
+        }
         binput = selection_scrub();
         if (binput && state != game_state::GAME_OVER) {
-            chance = 1 + rand() % player.get_equipped().damage - 1;
+            chance = 1 + rand() % player.get_equipped().damage + player.get_luck();
             cout << "You attack Ewyl for " << chance;
             ewyl.take_damage(chance);
             if (!ewyl.is_alive()) {
@@ -382,5 +395,10 @@ void game_loop(bool &gameloop, c_player &player, std::array<c_area, 4> &map, gam
             default:
                 break;
         }
+    }
+    if (state == game_state::GAME_OVER) {
+        cout << "\n\nYou died! Hope you had fun!";
+    } else if (state == game_state::WIN) {
+        cout << "\n\nCongrats! You beat Champion of the Abyss, Ewyl and freed everyone of his curse!";
     }
 }

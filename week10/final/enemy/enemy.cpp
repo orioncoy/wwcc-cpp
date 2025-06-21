@@ -5,7 +5,7 @@
 using namespace std;
 
 void enemy_stats(c_enemy enemy) {
-    cout << "\n#-[" << enemy.get_name() << " - stats]--------";
-
-    cout << "\n#-----------------------";
+    cout << "\n\n[" << enemy.get_name() << " - stats]"
+         << "\n|-> Health [" << enemy.get_health() << "]"
+         << "\n|-> Attack [" << enemy.get_attack() << "]";
 }
