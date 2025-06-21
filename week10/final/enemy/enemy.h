@@ -35,6 +35,8 @@ public:
         }
     }
 
+    //-------------------------//
+
     int get_attack() {
         return attack;
     }
@@ -47,6 +49,8 @@ public:
     int get_health() {
         return health;
     }
+
+    //-------------------------//
 
     void take_damage(int damage) {
         this->health -= damage;

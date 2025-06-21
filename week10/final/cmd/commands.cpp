@@ -6,6 +6,8 @@
 
 using namespace std;
 
+//-------------------------//
+
 int selection_scrub(int min, int max) {
 
     int input;
@@ -41,6 +43,8 @@ bool selection_scrub() {
     }
 }
 
+//-------------------------//
+
 void screen_clear() {
     #ifdef _WIN32
         system("cls");
@@ -48,6 +52,8 @@ void screen_clear() {
         system("clear");
     #endif
 };
+
+//-------------------------//
 
 int roll(int min, int max) {
     static std::random_device rd;

@@ -1,3 +1,9 @@
+/* 
+Interactive Story Game - DimSoles
+Author: Calvin Losh
+Date: 06-21-2025
+*/
+
 #include <iostream>
 #include <string>
 #include <array>

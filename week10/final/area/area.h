@@ -28,7 +28,19 @@ private:
 
 public:
     c_area(std::string name, area_type type) 
-    : name(name), type(type) {};
+        : name(name), type(type) {};
+
+    //-------------------------//
+
+    c_enemy get_enemy(int index) {
+        return area_enemies.at(index);
+    }
+
+    std::string get_name() {
+        return name;
+    };
+
+    //-------------------------//
 
     c_area add_enemy(std::vector<c_enemy> &enemies) {
         for (int i = 0; i < enemies.size(); i++) {
@@ -41,11 +53,6 @@ public:
         area_enemies.push_back(enemy);
         return *this;
     }
-    c_enemy get_enemy(int index) {
-        return area_enemies.at(index);
-    }
-
-    std::string get_name() {return name;};
 };
 
 std::array<c_area, 4> world_init();

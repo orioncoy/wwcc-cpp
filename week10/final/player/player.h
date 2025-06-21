@@ -20,20 +20,32 @@ private:
     areas current_location = areas::BURNT_VILLAGE;
 
 public:
-    c_player(std::string name) : name(name) {};
+    c_player(std::string name) 
+        : name(name) {};
 
-    // - GETTERS - //
+    //-------------------------//
 
-    std::string get_name() {return name;}
+    std::string get_name() {
+        return name;
+    }
 
-    int get_health() {return health;}
+    int get_health() {
+        return health;
+    }
 
-    int get_luck() {return luck;}
+    int get_luck() {
+        return luck;
+    }
 
-    areas get_current_location() {return current_location;}
+    areas get_current_location() {
+        return current_location;
+    }
 
-    weapon get_equipped() {return equipped;}
-    //
+    weapon get_equipped() {
+        return equipped;
+    }
+
+    //-------------------------//
 
     void equip_weapon(weapon weapon) {
         this->equipped = weapon;
