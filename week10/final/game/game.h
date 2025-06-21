@@ -7,7 +7,9 @@
 enum class game_state {
     EXPLORE,
     COMBAT,
-    GAME_OVER
+    PUZZLE,
+    GAME_OVER,
+    WIN
 };
 
 void game_loop(bool &gameloop, c_player &player, std::array<c_area, 4> &map, game_state &state);

@@ -42,6 +42,19 @@ public:
     void update_location(areas location) {
         this->current_location = location;
     }
+
+    c_player take_damage(int damage) {
+        this->health -= damage;
+        return *this;
+    }
+
+    bool is_alive() {
+        if (health > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 };
 
 void player_stats(c_player player);
