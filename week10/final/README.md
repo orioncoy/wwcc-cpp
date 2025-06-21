@@ -9,7 +9,7 @@
 
 ## Story Synopsis
 
-You character wakes up in a burnt down village and need to break the curse keeping everyone alive forever, you being a warmblood can do that.
+- You character wakes up in a burnt down village and need to break the curse keeping everyone alive forever, you being a warmblood can do that.
 
 ## Controls
 
